@@ -46,25 +46,35 @@ public class App {
                 currentUser = new Registered(firstName, lastName, email, username, password);
 
                 break;
-            case 2:
-                System.out.println("Login System is not implemented yet");
-                recipeMenu();
-                switch(input.getInt(1,2)) {
-                    case 1:
-                        // later
-                        break;
-                    case 2:
-                        String recipeName = input.getString("What's the name of the recipe?");
-                        System.out.println("What's the time of the recipe?");
-                        double recipeTime = input.getDouble();
-                        String recipeInstructions = input.getString("What's the instructions of the recipe?");
-                        String timeUnit = input.getString("What's the unit of the recipe?");
 
-                        Recipe newRecipe = new Recipe(recipeName, recipeTime, recipeInstructions,timeUnit, sampleIngredients, sung);
-                        recipes.add(newRecipe);
-                        break;
-                }
+            case 2:
+                System.out.println("Logged in");
+
+                do{
+                    recipeMenu();
+                    switch(input.getInt(1,2)) {
+                        case 1:
+                            // view recipes
+                            for (Recipe recipe: recipes) {
+                                recipe.display();
+                            }
+                            System.out.println("recipes = " + recipes.toString());
+                            break;
+                        case 2:
+                            String recipeName = input.getString("What's the name of the recipe?");
+                            System.out.println("What's the time of the recipe?");
+                            double recipeTime = input.getDouble();
+                            String recipeInstructions = input.getString("What's the instructions of the recipe?");
+                            String timeUnit = input.getString("What's the unit of the recipe?");
+
+                            Recipe newRecipe = new Recipe(recipeName, recipeTime, recipeInstructions,timeUnit, sampleIngredients, sung);
+                            recipes.add(newRecipe);
+                            break;
+                    }
+                    System.out.println("Continue?");
+                } while ((input.yesNo()));
                 break;
+
             case 3:
                 System.out.println("Proceeding as Guest.");
                 currentUser = new Guest(input.getString("First Name: "), input.getString("Last Name: "), input.getString("email: "));
