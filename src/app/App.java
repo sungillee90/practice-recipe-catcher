@@ -8,6 +8,7 @@ import app.users.User;
 import app.util.Input;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class App {
 
@@ -93,7 +94,8 @@ public class App {
         sampleIngredients = new ArrayList<>();
         sampleIngredients.add(new Ingredient("Eggs", 3, "egg"));
         sampleIngredients.add(new Ingredient("Cheese", 1, "kg"));
-
+        Registered jen = new Registered("Jennifer","Lee","jhm@mail.com","jmh","1234");
+        recipes.add(new Recipe("Chicken soup", 50,"Its on the back of the package","mins", sampleIngredients, jen));
     }
 }
 
