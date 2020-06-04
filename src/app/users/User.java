@@ -1,6 +1,6 @@
-package app;
+package app.users;
 
-abstract class User {
+public abstract class User {
     protected String firstName;
     protected String lastName;
     protected String email;
