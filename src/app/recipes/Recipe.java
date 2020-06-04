@@ -70,6 +70,7 @@ public class Recipe {
     }
 
     public void display() {
+        System.out.println("--------------");
         System.out.println("name = " + this.name);
         System.out.println("time = " + this.time);
         System.out.println("instructions = " + this.instructions);
