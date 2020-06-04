@@ -1,14 +1,24 @@
 package app;
 
+import app.recipes.Ingredient;
+import app.recipes.Recipe;
 import app.users.Guest;
 import app.users.Registered;
 import app.users.User;
 import app.util.Input;
 
+import java.util.ArrayList;
+
 public class App {
+
+    static ArrayList<Ingredient> sampleIngredients;
+    static ArrayList<Recipe> recipes = new ArrayList<>();
+
     public static void main(String[] args) {
-        User sung = new Registered("Sung Il", "lee", "myEmail@mail.com", "sungil.lee90", "1234");
-        System.out.println("sung = " + sung);
+        Registered sung = new Registered("Sung Il", "lee", "myEmail@mail.com", "sungil.lee90", "1234");
+
+        buildDummyData();
+
         Input input = new Input(); // Instance of input due to there are no static inside of Input class.
 
 
@@ -38,7 +48,22 @@ public class App {
                 break;
             case 2:
                 System.out.println("Login System is not implemented yet");
-                currentUser = sung;
+                recipeMenu();
+                switch(input.getInt(1,2)) {
+                    case 1:
+                        // later
+                        break;
+                    case 2:
+                        String recipeName = input.getString("What's the name of the recipe?");
+                        System.out.println("What's the time of the recipe?");
+                        double recipeTime = input.getDouble();
+                        String recipeInstructions = input.getString("What's the instructions of the recipe?");
+                        String timeUnit = input.getString("What's the unit of the recipe?");
+
+                        Recipe newRecipe = new Recipe(recipeName, recipeTime, recipeInstructions,timeUnit, sampleIngredients, sung);
+                        recipes.add(newRecipe);
+                        break;
+                }
                 break;
             case 3:
                 System.out.println("Proceeding as Guest.");
@@ -47,6 +72,17 @@ public class App {
         }
 
         System.out.println("currentUser = " + currentUser);
+
+    }
+    public static void recipeMenu() {
+        System.out.println("What do you want to do?");
+        System.out.println("1. View a recipe");
+        System.out.println("2. Create a recipe");
+    }
+    public static void buildDummyData() {
+        sampleIngredients = new ArrayList<>();
+        sampleIngredients.add(new Ingredient("Eggs", 3, "egg"));
+        sampleIngredients.add(new Ingredient("Cheese", 1, "kg"));
 
     }
 }
